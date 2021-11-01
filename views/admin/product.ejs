@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+
+        <main class="container">
+            <% if(products.length> 0) { %>
+                <div class="row d-flex justify-content-center">
+                    <% for(product of products){ %>
+                        <div class="col-md-4 ">
+                            <div class="card p-1 shadow border border-4 border-primary  border-start-0  border-end-0"
+                                style="width: 18rem;">
+                                <h5 class="card-title p-3 text-center ">
+                                    <%= product.title %>
+                                </h5>
+                                <img src="<%= product.imageUrl %> "  onerror="this.onerror=null; this.src='https://picsum.photos/id/1/200/300'" class="card-img-top" style="height: 200px;"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title p-3 text-center">$<%= product.price %>
+                                    </h5>
+                                    <p class="card-text text-justify">
+                                        <%= product.description %>
+                                    </p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/admin/edit-product/<%= product._id %>?edit=true"
+                                            class="btn btn-primary ">Update</a>
+                                        &emsp;
+                                        <form action="/admin/delete-product" method="post">
+                                            <input type="hidden" name="prodId" value="<%= product._id %>">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+                <% }else{ %>
+                    <h1>No Product Found</h1>
+                    <% } %>
+        </main>
+
+
+
+        <%- include('../includes/end.ejs') %>

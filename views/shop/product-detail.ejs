@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+
+        <main class="container">
+                <div class="row">
+                    <div class="col-md-5 mt-5">
+                        <img src="<%= product.imageUrl %> " alt="no " onerror="this.onerror=null; this.src='https://picsum.photos/id/1/200/300'"  class="card-img-top shadow" style="height: 400px;">
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <div class="card mt-5" style="width: 100%;">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">   <%= product.title %></h5>
+                              <h6 class="card-subtitle mb-2 text-muted text-center"> $<%= product.price %></h6>
+                              <p class="card-text text-center"><%= product.description %></p>
+                              <%- include('../includes/add-to-cart.ejs') %>
+                            </div>
+                          </div>
+                       
+                    </div>
+                    
+                </div>
+        </main>
+
+
+
+        <%- include('../includes/end.ejs') %>

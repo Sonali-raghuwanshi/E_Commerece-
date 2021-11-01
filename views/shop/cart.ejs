@@ -1,0 +1,73 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10  m-auto">
+ 
+                        <table class="table  mt-5 table-striped">
+                            <% if(products.length> 0){ %>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">ImageUrl</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% products.forEach(p=> { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= p.productId.title %>
+                                            </th>
+                                            <td>
+                                                <img src="<%= p.productId.imageUrl  %>" alt="No image Found" class="w-75 h-50">
+                                            </td>
+                                            <td>
+                                                <%= p.productId.price%>
+                                            </td>
+                                            <td>
+                                                <%= p.quantity%>
+                                            </td>
+                                            <td>
+                                                <%= p.productId.description %>
+                                            </td>
+                                            <td>
+                                                <form action="/delete-cart-item" method="post">
+                                                    <input type="hidden" name="prodId" value="<%= p._id %>" />
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                                <% }) %>
+                                    <% }else{ %>
+                                        <tfoot class="">
+                                            <h1 class="text-center text-primary mt-5 border p-3 shadow">
+                                                No Product Found
+                                            </h1>
+                                        </tfoot>
+
+                                        <% } %>
+                        </table>
+                        <div class="col-md-6 m-auto">
+                            <form action="/create-order" method="POST">
+                                <button type="submit" class="btn btn-outline-primary rounded-0 w-100 mx-auto d-block">Order</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <%- include('../includes/end.ejs') %>

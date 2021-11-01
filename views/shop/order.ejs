@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10  m-auto">
+                        <table class="table  mt-5 table-striped">
+                            <% if(orders.length> 0){ %>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Product Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% orders.forEach(order=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= order._id %>
+                                            </td>
+                                            <th scope="row">
+                                                <ul>
+                                                    <% order.products.forEach(p=>{ %>
+                                                        <li>
+                                                            <%= p.product.title %> &emsp; <%= p.product.quantity %>
+                                                        </li>
+                                                        <% }) %>
+                                                </ul>
+                                            </th>
+
+
+                                        </tr>
+                                </tbody>
+                                <% }) %>
+                                    <% }else{ %>
+                                        <tfoot>No Product Found</tfoot>
+                                        <% } %>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <%- include('../includes/end.ejs') %>

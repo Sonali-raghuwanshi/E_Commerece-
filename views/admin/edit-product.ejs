@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+       
+        <main class="container">
+            <div class="row">
+                <div
+                    class="col-md-6 m-auto p-md-4  shadow">
+                    <form action="/admin/<%= (mode)?'edit-product':'add-product' %>" method="POST">
+                        <input type="hidden" name="prodId"  value="<%= (mode)?products._id:'' %>">
+                        <div class="form-group">
+                            <label for="">Title</label>
+                            <input type="text" name="title" id="" value="<%= (mode)?products.title:'' %>"
+                                class="form-control ">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="">ImageUrl</label>
+                            <input type="text" name="imageUrl" value="<%= (mode)?products.imageUrl:'' %>" id=""
+                                class="form-control ">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Price</label>
+                            <input type="number" name="price" id=""
+                                class="form-control " 
+                                value="<%= (mode)?products.price:'' %>"
+                                >
+                        </div>
+                        <div class="form-group">
+                            <label for="">description</label>
+                            <textarea name="description" id=""
+                                class="form-control "
+                                rows="5">
+                                <%= (mode)?products.description:'' %>
+                            </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4 mx-auto d-block "><%= (mode)?'Update Products':'Add Products' %></button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../includes/end.ejs') %>
